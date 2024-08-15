@@ -1,0 +1,33 @@
+$(function() {
+    let sounds = [
+        'sound1.mp3',
+        'sound2.mp3',
+        'sound3.mp3'
+    ];
+
+    function playRandomSound() {
+        let randomIndex = Math.floor(Math.random() * sounds.length);
+        let sound = sounds[randomIndex];
+        $('#soundPlayer').attr('src', sound)[0].play();
+    }
+
+    $('.draggable').draggable({
+        helper: 'clone',
+        revert: 'invalid'
+    });
+
+    $('#stage').droppable({
+        accept: '.draggable',
+        drop: function(event, ui) {
+            let $monster = $(ui.helper).clone();
+            let sound = $monster.data('sound');
+            $('#soundPlayer').attr('src', sound)[0].play();
+            $monster.css({
+                top: ui.position.top - $(this).offset().top,
+                left: ui.position.left - $(this).offset().left,
+                cursor: 'default'
+            }).removeClass('ui-draggable-dragging');
+            $(this).append($monster);
+        }
+    });
+});

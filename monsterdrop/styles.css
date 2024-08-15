@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#stage {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("\Jari\Desktop\monsterdrop\images\background-stage.jpg");
+    background-size: cover;
+    position: relative;
+}
+
+.draggable {
+    position: absolute;
+    width: 100px; /* Adjust size as needed */
+    cursor: grab;
+}
